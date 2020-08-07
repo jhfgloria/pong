@@ -4,11 +4,13 @@ onready var ball: KinematicBody2D = $Ball
 onready var enemy: KinematicBody2D = $Enemy
 onready var hud: CanvasLayer = $HUD
 onready var initial_position: Position2D = $InitialPosition
+onready var startup_timer: Timer = $StartupTimer
 
 export (float) var ball_speed = 200.0
 
 var player_one_score = 0
 var player_two_score = 0
+var time_left = 3
 
 func _ready():
 	ball.position = initial_position.position
@@ -38,5 +40,17 @@ func update_scores():
 	hud.set_scores(player_one_score, player_two_score)
 
 func _on_HUD_start_game():
-	ball.show()
-	ball.set_speed(ball_speed)
+	time_left = 3
+	hud.set_message(String(time_left))
+	hud.show_message()
+	startup_timer.start(1)
+
+func _on_StartupTimer_timeout():
+	if time_left > 1:
+		time_left -= 1
+		hud.set_message(String(time_left))
+	else:
+		startup_timer.stop()
+		hud.hide_message()
+		ball.show()
+		ball.set_speed(ball_speed)

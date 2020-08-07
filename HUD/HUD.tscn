@@ -66,4 +66,20 @@ text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -79.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.133333, 0.129412, 0.235294, 1 )
+text = "PLAYER 1 WINS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_up" from="StartGame" to="." method="_on_StartGame_button_up"]

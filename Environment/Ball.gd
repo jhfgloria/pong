@@ -8,10 +8,9 @@ func _ready():
 	direction = direction.normalized()
 	
 func _physics_process(delta):
-	print_debug(direction * delta * speed)
 	var collision = move_and_collide(direction * delta * speed)
 	if collision:
-		speed += 10
+		speed = min(speed + 10, 1500)
 
 		if collision.collider.get_collision_layer() == 2:
 			direction.y *= -1

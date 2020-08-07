@@ -15,6 +15,7 @@ extents = Vector2( 10, 300.436 )
 script = ExtResource( 6 )
 
 [node name="Ball" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 512, 300 )
 
 [node name="Top_Wall" parent="." instance=ExtResource( 4 )]
@@ -31,10 +32,6 @@ collision_mask = 3
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1013, 300 )
 collision_mask = 6
-
-[node name="Pitch" parent="." instance=ExtResource( 7 )]
-
-[node name="HUD" parent="." instance=ExtResource( 8 )]
 
 [node name="PlayerOneGoal" type="Area2D" parent="."]
 collision_layer = 8
@@ -54,6 +51,13 @@ shape = SubResource( 1 )
 
 [node name="InitialPosition" type="Position2D" parent="."]
 position = Vector2( 512, 300 )
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
+
+[node name="Pitch" parent="." instance=ExtResource( 7 )]
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]
+
+[node name="StartupTimer" type="Timer" parent="."]
 [connection signal="body_entered" from="PlayerOneGoal" to="." method="_on_PlayerOneGoal_body_entered"]
 [connection signal="body_entered" from="PlayerTwoGoal" to="." method="_on_PlayerTwoGoal_body_entered"]
+[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
+[connection signal="timeout" from="StartupTimer" to="." method="_on_StartupTimer_timeout"]
