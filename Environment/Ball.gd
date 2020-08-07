@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
+var speed: float = 0
 var direction = Vector2(-1.0, -1.0)
 
 func _ready():
@@ -8,6 +8,7 @@ func _ready():
 	direction = direction.normalized()
 	
 func _physics_process(delta):
+	print_debug(direction * delta * speed)
 	var collision = move_and_collide(direction * delta * speed)
 	if collision:
 		speed += 10
@@ -19,3 +20,6 @@ func _physics_process(delta):
 			direction.x *= -1
 			
 		direction.normalized()
+
+func set_speed(new_speed: float):
+	speed = new_speed

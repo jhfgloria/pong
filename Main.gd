@@ -5,6 +5,8 @@ onready var enemy: KinematicBody2D = $Enemy
 onready var hud: CanvasLayer = $HUD
 onready var initial_position: Position2D = $InitialPosition
 
+export (float) var ball_speed = 200.0
+
 var player_one_score = 0
 var player_two_score = 0
 
@@ -34,3 +36,7 @@ func _on_PlayerOneGoal_body_entered(body):
 
 func update_scores():
 	hud.set_scores(player_one_score, player_two_score)
+
+func _on_HUD_start_game():
+	ball.show()
+	ball.set_speed(ball_speed)
