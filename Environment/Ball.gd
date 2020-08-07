@@ -10,6 +10,8 @@ func _ready():
 func _physics_process(delta):
 	var collision = move_and_collide(direction * delta * speed)
 	if collision:
+		speed += 10
+
 		if collision.collider.get_collision_layer() == 2:
 			direction.y *= -1
 			

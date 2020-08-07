@@ -25,7 +25,6 @@ collision_mask = 3
 [node name="Ball" parent="." instance=ExtResource( 2 )]
 position = Vector2( 512, 300 )
 script = ExtResource( 5 )
-speed = 400
 
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1014, 300 )
